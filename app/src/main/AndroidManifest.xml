@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.widgetexample">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--<receiver android:name=".ApiWidgetProvider" >-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />-->
+            <!--</intent-filter>-->
+            <!--<meta-data android:name="android.appwidget.provider"-->
+                <!--android:resource="@xml/simple_widget_info" />-->
+        <!--</receiver>-->
+
+        <service android:name=".widget.collection.WidgetService" />
+
+        <receiver
+            android:name=".widget.collection.CollectionApiWidgetProvider"
+            android:label="WidgetExample" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="me.indiandollar.apps.todoappcollectionwidget.app.ACTION_DATA_UPDATED" />
+            </intent-filter>
+
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/collection_widget" />
+        </receiver>
+
+
+        <service android:name=".widget.collection.MyWidgetRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"></service>
+
+    </application>
+
+</manifest>
